@@ -15,9 +15,9 @@ class CreateBeritaTable extends Migration
     {
         Schema::create('berita', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('judul');
-            $table->text('header')->nullable()->comment('Gambar Berita');
-            $table->text('isi');
+            $table->string('judul', 100);
+            $table->text('header',100)->nullable()->comment('Gambar Berita');
+            $table->text('isi', 100);
             $table->integer('user_id')->comment('Kolom Dibuat Oleh');
             $table->integer('kategori_id')->comment('Kolom Kategori Berita\nOtomatis terisi oleh User id yang login');
             $table->enum('status', ['0','1'])->comment('Status: 0 Draft, 1 Publish');

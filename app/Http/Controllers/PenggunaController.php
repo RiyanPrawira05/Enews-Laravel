@@ -15,8 +15,13 @@ class PenggunaController extends Controller
     public function index()
     {
         $data = User::all(); // Untuk query memanggil semua User
-        dd($data); // Untuk dump data user... hapus aja ini
-        // return view('pengguna.index');
+        // dd($data); // Untuk dump data user... hapus aja ini
+
+        // foreach ($data as $users) {
+        //     $users->name;
+        //     $users->email;
+        // }
+        return view('pengguna.index', compact('data'));
     }
 
     /**
@@ -26,7 +31,7 @@ class PenggunaController extends Controller
      */
     public function create()
     {
-        //
+        return view('pengguna.create');
     }
 
     /**
@@ -48,7 +53,7 @@ class PenggunaController extends Controller
         $data->email = $request->email;
         $data->password = bcrypt($request->password);
         $data->save(); // Tanpa ada save ini tidak akan tersimpan
-        return redirect()->back(); // Redirect ke halaman tadi
+        return redirect()->route('pengguna.index'); // Redirect ke halaman tadi
     }
 
     /**
@@ -71,7 +76,8 @@ class PenggunaController extends Controller
     public function edit($id)
     {
         $data = User::find($id); // Mencari user sesuai dengan id = $id
-        dd($data);
+        // dd($data);
+        return view('pengguna.edit', compact('data'));
     }
 
     /**
@@ -96,7 +102,7 @@ class PenggunaController extends Controller
             $data->password = bcrypt($request->password);
         }
         $data->save(); // Tanpa ada save ini tidak akan tersimpan
-        return redirect()->back(); // Redirect ke halaman tadi
+        return redirect()->route('pengguna.index'); // Redirect ke halaman tadi
     }
 
     /**
@@ -108,6 +114,6 @@ class PenggunaController extends Controller
     public function destroy($id)
     {
         $data = User::find($id)->delete(); // Menghapus
-        return redirect()->back(); // Redirect ke halaman tadi
+        return redirect()->route('pengguna.index'); // Redirect ke halaman tadi
     }
 }
