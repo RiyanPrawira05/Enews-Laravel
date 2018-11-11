@@ -29,3 +29,7 @@ Route::post('/pengguna/create', 'PenggunaController@store')->name('pengguna.stor
 Route::get('/pengguna/edit/{id}', 'PenggunaController@edit')->name('pengguna.edit'); // {id} adalah parameter variable $id yang berada di controller
 Route::post('/pengguna/edit/{id}', 'PenggunaController@update')->name('pengguna.update'); // {id} adalah parameter variable $id yang berada di controller
 Route::get('/pengguna/delete/{id}', 'PenggunaController@destroy')->name('pengguna.destroy');
+
+Route::get('/berita/{id}', 'BeritaController@show')->name('berita.show');
+
+

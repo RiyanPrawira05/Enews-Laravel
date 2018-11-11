@@ -14,7 +14,7 @@ class PenggunaController extends Controller
      */
     public function index()
     {
-        $data = User::all(); // Untuk query memanggil semua User
+        $data = User::orderBy('created_at', 'DESC')->get(); // Untuk query memanggil semua User
         // dd($data); // Untuk dump data user... hapus aja ini
 
         // foreach ($data as $users) {
@@ -102,7 +102,7 @@ class PenggunaController extends Controller
             $data->password = bcrypt($request->password);
         }
         $data->save(); // Tanpa ada save ini tidak akan tersimpan
-        return redirect()->route('pengguna.index'); // Redirect ke halaman tadi
+        return redirect()->route('pengguna.index')->with('success', 'berhasil'); // Redirect ke halaman tadi
     }
 
     /**

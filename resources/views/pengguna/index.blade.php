@@ -8,6 +8,7 @@
                 <div class="panel-heading">Pengguna <a href="{{ route('pengguna.create') }}" class="btn btn-success btn-xs pull-right">ADD</a></div>
 
                 <div class="panel-body">
+                    @include('template.alert')
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>

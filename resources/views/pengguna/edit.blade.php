@@ -8,6 +8,7 @@
                 <div class="panel-heading">Edit Pengguna</div>
 
                 <div class="panel-body">
+                    @include('template.alert')
                     <form class="form-horizontal" method="POST" action="{{ route('pengguna.update', $data) }}">
                         {{ csrf_field() }}
 
@@ -29,7 +30,7 @@
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ $data->email }}" required autofocus>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ $data->email }}" required autocomplete="off">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
