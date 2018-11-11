@@ -30,6 +30,15 @@ Route::get('/pengguna/edit/{id}', 'PenggunaController@edit')->name('pengguna.edi
 Route::post('/pengguna/edit/{id}', 'PenggunaController@update')->name('pengguna.update'); // {id} adalah parameter variable $id yang berada di controller
 Route::get('/pengguna/delete/{id}', 'PenggunaController@destroy')->name('pengguna.destroy');
 
+
 Route::get('/berita/{id}', 'BeritaController@show')->name('berita.show');
+
+
+Route::get('/category', 'CategoryController@index')->name('category.index');
+Route::get('/category/create', 'CategoryController@create')->name('category.create');
+Route::post('/category/create', 'CategoryController@store')->name('category.store');
+Route::get('/category/edit/{id}', 'CategoryController@edit')->name('category.edit');
+Route::post('/category/edit/{id}', 'CategoryController@update')->name('category.update');
+Route::get('/categori/delete/{id}', 'CategoryController@destroy')->name('category.destroy');
 
 
