@@ -36,7 +36,9 @@ class BeritaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->header) { // Jikalau ada inputan header dia proses dibawah
+          $user->header = UploadFile::file($request->avatar, 'foto/'); // dia nge return url nya
+        }
     }
 
     /**

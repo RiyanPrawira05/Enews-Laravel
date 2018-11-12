@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use UploadFile;
 use App\Category; //ambil dari model categori
 
 class CategoryController extends Controller
