@@ -58,7 +58,9 @@
                             
                             <div class="col-md-6">
                                 <select id="user" class="form-control" name="user" value="{{ old('user') }}" required>
-                                    <option value="userID">Choose user ID</option>
+                                    @foreach($user as $value)
+                                    <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                    @endforeach
                                 </select>
 
                                 @if ($errors->has('user'))

@@ -32,7 +32,9 @@ class BeritaController extends Controller
      */
     public function create()
     {
-        return view('berita.create');
+        $category = Category::all();
+        $user = User::all();
+        return view('berita.create', compact('category', 'user'));
     }
 
     /**
@@ -53,10 +55,6 @@ class BeritaController extends Controller
             'status' => 'required|max:20',
 
         ]);
-
-        $category = Category::all();
-        $user = User::all();
-
         $data = new Berita;
         $data->judul = $request->judul;
         $data->header = $request->header;
@@ -69,7 +67,7 @@ class BeritaController extends Controller
         if($request->header) { // Jikalau ada inputan header dia proses dibawah
           $user->header = UploadFile::file($request->avatar, 'foto/'); // dia nge return url nya
         }
-        return redirect()->back()->compact('category','user');
+        return redirect()->back();
     }
 
     /**
@@ -82,7 +80,7 @@ class BeritaController extends Controller
     {
         // $berita = Berita::find($id);
 
-        // dd($berita->category->keterangan); // ini tuh category ambil dari database atau controller atau dari model? dia tuh ambil kolom keterangan nya kan?
+        // dd($berita->category->keterangan); // ini tuh category ambil dari database atau controller atau dari model? dia tuh ambil kolom keterangan nya kan? .. dia dari model terus si model ngambil dari database
     }
 
     /**
