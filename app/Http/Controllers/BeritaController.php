@@ -19,7 +19,7 @@ class BeritaController extends Controller
      */
     public function index()
     {
-        $berita = Berita::all();
+        $berita = Berita::with('category', 'user')->get();
         $category = Category::all();
         $user = User::all();
         return view('berita.index', compact('berita', 'category', 'user'));
