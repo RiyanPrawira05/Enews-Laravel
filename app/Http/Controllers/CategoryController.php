@@ -39,12 +39,12 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'kategori' => 'required|max:30', // ini tuh required html kan?
-            'keterangan' => 'required|max:100', // apakah ada keamanan lain untuk validate selain required dan max?
+            'kategori' => 'required|max:30', // ini tuh required html kan? .. ini tuh required $request->kategori
+            'keterangan' => 'required|max:100', // apakah ada keamanan lain untuk validate selain required dan max? .. banyak. https://laravel.com/docs/5.7/validation
         ]);
 
         $data = new Category;
-        $data->kategori = $request->kategori; // kategori ini ambil dari nama inputan form atau database ??
+        $data->kategori = $request->kategori; // kategori ini ambil dari nama inputan form atau database .. inputan <input name="kategori"
 
         $data->keterangan = $request->keterangan;
         $data->save();
