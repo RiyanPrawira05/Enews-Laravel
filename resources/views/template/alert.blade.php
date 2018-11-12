@@ -1,17 +1,24 @@
-@if (session('success'))
-	<div class="alert-success">
-		{{ session('success') }}
-	</div>
+
+@if(session('success'))
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+        {!! session('success') !!}
+    </div>
 @endif
 
-@if (session('info'))
-	<div class="alert-info">
-		{{ session('info') }}
-	</div>
+@if(session('error'))
+    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+     {!! session('error') !!}
+    </div>
 @endif
 
-@if (session('danger'))
-	<div class="alert-danger">
-		{{ session('danger') }}
-	</div>
+@if (count($errors) > 0)
+    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+        <p>Perhatian.</p>
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+
 @endif
