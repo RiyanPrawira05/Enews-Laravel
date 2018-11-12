@@ -15,7 +15,7 @@
                             <label for="judul" class="col-md-4 control-label">Judul</label>
 
                             <div class="col-md-6">
-                                <input id="kategori" type="text" class="form-control" name="kategori" value="{{ old('judul') }}" required autofocus="autofocus"> <!-- old('') ini apa? -->
+                                <input id="kategori" type="text" class="form-control" name="judul" value="{{ old('judul') }}" autofocus="autofocus" required> <!-- old('') ini apa? -->
 
                                 @if ($errors->has('judul')) <!-- ini juga dan has itu apa -->
                                     <span class="help-block">
@@ -57,9 +57,9 @@
                             <label for="user" class="col-md-4 control-label">User ID</label>
                             
                             <div class="col-md-6">
-                                <select id="user" class="form-control" name="user" value="{{ old('user') }}" required>
-                                    @foreach($user as $value)
-                                    <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                <select id="user" class="form-control" name="user_id" value="{{ old('user') }}" required>
+                                    @foreach($user as $users)
+                                        <option value="{{ $users->id }}">{{ $users->name }}</option>
                                     @endforeach
                                 </select>
 
@@ -75,8 +75,10 @@
                             <label for="kategori" class="col-md-4 control-label">Kategori ID</label>
 
                             <div class="col-md-6">
-                                <select id="kategori" type="text" class="form-control" name="kategori" value="{{ old('kategori') }}" required>
-                                    <option value="kategoriID">Choose Kategori ID</option>
+                                <select id="kategori" type="text" class="form-control" name="kategori_id" value="{{ old('kategori') }}" required>
+                                    @foreach ($category as $kategori)
+                                        <option value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>
+                                    @endforeach
                                 </select>
 
                                 @if ($errors->has('kategori'))

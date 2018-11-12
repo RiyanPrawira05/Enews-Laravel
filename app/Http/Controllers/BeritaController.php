@@ -19,7 +19,8 @@ class BeritaController extends Controller
      */
     public function index()
     {
-        $berita = Berita::with('category', 'user')->get();
+        // $berita = Berita::with('category', 'user')->get();
+        $berita = Berita::all();
         $category = Category::all();
         $user = User::all();
         return view('berita.index', compact('berita', 'category', 'user'));
@@ -47,7 +48,7 @@ class BeritaController extends Controller
     {
         $this->validate($request, [
 
-            'judul' => 'required|max:30',
+            'judul' => 'max:30',
             'header' => 'required',
             'isi' => 'required|max:100',
             'user_id' => 'required|max:50',
@@ -55,19 +56,20 @@ class BeritaController extends Controller
             'status' => 'required|max:20',
 
         ]);
+
         $data = new Berita;
         $data->judul = $request->judul;
         $data->header = $request->header;
         $data->isi = $request->isi;
-        $data->user = $request->user;
-        $data->kategori = $request->kategori;
+        $data->user_id = $request->user_id;
+        $data->kategori_id = $request->kategori_id;
         $data->status = $request->status;
         $data->save();
 
         if($request->header) { // Jikalau ada inputan header dia proses dibawah
-          $user->header = UploadFile::file($request->avatar, 'foto/'); // dia nge return url nya
+          $user->header = UploadFile::file($request->avatar, 'images/'); // dia nge return url nya
         }
-        return redirect()->back();
+        return redirect()->route('berita.index');
     }
 
     /**

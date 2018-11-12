@@ -34,7 +34,7 @@
 
                                         <td>{{ $news->user->name }}</td> <!-- cara nampilin nama usernya gimana ya pi? saya sudah manggil model user di controller tpi ttep ga bsa -->
 
-                                        <td>{{ $news->kategori }}</td> <!-- ini juga sama -->
+                                        <td>{{ $news->category->kategori }}</td> <!-- ini juga sama -->
 
                                         <td>{{ $news->status }}</td>
                                         <td>{{ $news->updated_at }}</td>
