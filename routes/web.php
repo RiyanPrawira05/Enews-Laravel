@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(); // ini fungsi biasa ya? klo di native mah mysqli_html_special_chars betul? 
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -31,7 +31,7 @@ Route::post('/pengguna/edit/{id}', 'PenggunaController@update')->name('pengguna.
 Route::get('/pengguna/delete/{id}', 'PenggunaController@destroy')->name('pengguna.destroy');
 
 
-Route::get('/berita/{id}', 'BeritaController@show')->name('berita.show');
+// Route::get('/berita/{id}', 'BeritaController@show')->name('berita.show');
 
 
 Route::get('/category', 'CategoryController@index')->name('category.index');
@@ -40,5 +40,9 @@ Route::post('/category/create', 'CategoryController@store')->name('category.stor
 Route::get('/category/edit/{id}', 'CategoryController@edit')->name('category.edit');
 Route::post('/category/edit/{id}', 'CategoryController@update')->name('category.update');
 Route::get('/categori/delete/{id}', 'CategoryController@destroy')->name('category.destroy');
+
+Route::get('/berita', 'BeritaController@index')->name('berita.index');
+Route::get('/berita/create', 'BeritaController@create')->name('berita.create');
+Route::post('/berita/create', 'BeritaController@store')->name('berita.store');
 
 

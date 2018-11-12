@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use UploadFile;
+use UploadFile; // ini ambil dari mana pi?
 use App\Category; //ambil dari model categori
 
 class CategoryController extends Controller
@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
+        $category = Category::all(); // ini nama category:: harus sama dengan nama model?
 
         return view('category.index', compact('category'));
     }
@@ -41,11 +41,16 @@ class CategoryController extends Controller
     {
         $this->validate($request, [
             'kategori' => 'required|max:30', // ini tuh required html kan? .. ini tuh required $request->kategori
+
+            // maksutnya required itu dia kalau kosong ada notif kek htmlkan (required) gt?
+
             'keterangan' => 'required|max:100', // apakah ada keamanan lain untuk validate selain required dan max? .. banyak. https://laravel.com/docs/5.7/validation
         ]);
 
         $data = new Category;
         $data->kategori = $request->kategori; // kategori ini ambil dari nama inputan form atau database .. inputan <input name="kategori"
+
+        //tapi pi saya ganti name di html jdi category dia error udh saya rubah2 disini nya ttep si nama nya harus kategori
 
         $data->keterangan = $request->keterangan;
         $data->save();
@@ -86,8 +91,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $data = Category::find($id);
-        $data->kategori = $request->kategori; // kategori ini ambil dari nama inputan form atau database ??
-
+        $data->kategori = $request->kategori; 
         $data->keterangan = $request->keterangan;
         $data->save();
         return redirect()->route('category.index')->with('success', 'Berhasil di Update!');

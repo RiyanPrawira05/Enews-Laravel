@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Berita;
+use App\Category;
+use App\User;
+
+// use App\User;
 
 class BeritaController extends Controller
 {
@@ -15,7 +19,10 @@ class BeritaController extends Controller
      */
     public function index()
     {
-        //
+        $berita = Berita::all();
+        $category = Category::all();
+        $user = User::all();
+        return view('berita.index', compact('berita', 'category', 'user'));
     }
 
     /**
@@ -25,7 +32,7 @@ class BeritaController extends Controller
      */
     public function create()
     {
-        //
+        return view('berita.create');
     }
 
     /**
@@ -36,9 +43,33 @@ class BeritaController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+
+            'judul' => 'required|max:30',
+            'header' => 'required',
+            'isi' => 'required|max:100',
+            'user_id' => 'required|max:50',
+            'kategori_id' => 'required|max:50',
+            'status' => 'required|max:20',
+
+        ]);
+
+        $category = Category::all();
+        $user = User::all();
+
+        $data = new Berita;
+        $data->judul = $request->judul;
+        $data->header = $request->header;
+        $data->isi = $request->isi;
+        $data->user = $request->user;
+        $data->kategori = $request->kategori;
+        $data->status = $request->status;
+        $data->save();
+
         if($request->header) { // Jikalau ada inputan header dia proses dibawah
           $user->header = UploadFile::file($request->avatar, 'foto/'); // dia nge return url nya
         }
+        return redirect()->back()->compact('category','user');
     }
 
     /**
@@ -49,8 +80,9 @@ class BeritaController extends Controller
      */
     public function show($id)
     {
-        $berita = Berita::find($id);
-        dd($berita->category->keterangan);
+        // $berita = Berita::find($id);
+
+        // dd($berita->category->keterangan); // ini tuh category ambil dari database atau controller atau dari model? dia tuh ambil kolom keterangan nya kan?
     }
 
     /**

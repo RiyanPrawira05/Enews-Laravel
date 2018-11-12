@@ -44,7 +44,7 @@ class PenggunaController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:30',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:users,email', // ini maksutnya dia apa pi?
             'password' => 'required|min:6',
         ]); // ini untuk validasi inputan. apabila tidak sesuai dengan yang diatas dia kembali lagi
 

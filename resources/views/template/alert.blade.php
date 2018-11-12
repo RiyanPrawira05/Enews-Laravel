@@ -11,7 +11,7 @@
     </div>
 @endif
 
-@if (count($errors) > 0)
+@if (count($errors) > 0) <!-- Ini prosesnya gimana pi, dari sini sampai bawah-->
     <div class="alert alert-danger alert-dismissible fade in" role="alert">
         <p>Perhatian.</p>
         <ul>

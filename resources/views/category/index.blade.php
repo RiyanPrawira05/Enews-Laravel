@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-default">
-                <div class="panel-heading">Category<a href="{{ route('category.create') }}" class="btn btn-success btn-xs pull-right">ADD</a></div>
+                <div class="panel-heading">Category<a href="{{ route('category.create') }}" class="btn btn-success btn-sm pull-right"><span class="fa fa-plus-circle"></span></a></div>
 
                 <div class="panel-body">
                     @include('template.alert')
@@ -28,8 +28,8 @@
                                         <td>{{ $kategori->keterangan }}</td>
                                         <td>{{ $kategori->updated_at }}</td>
                                         <td>
-                                            <a href="{{ route('category.edit', $kategori->id) }}" class="btn btn-xs btn-warning">Edit</a>
-                                            <a href="{{ route('category.destroy', $kategori->id) }}" class="btn btn-xs btn-danger">Delete</a>
+                                            <a href="{{ route('category.edit', $kategori->id) }}" class="btn btn-sm btn-warning"><span class="fa fa-edit"></span></a>
+                                            <a href="{{ route('category.destroy', $kategori->id) }}" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -8,10 +8,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }}</title> <!-- ini tuh apasih pi-->
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> <!-- ini di asset saya liat gada css adanya js -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('font-awesome/css/font-awesome.min.css') }}">
 </head>
 <body>
     <div id="app">
@@ -28,7 +29,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/') }}"> <!-- ini juga dari tag <a> sampai penutup </a> untuk apa -->
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -42,10 +43,12 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        @guest
+                        
+                        @guest <!-- ini lupa pi guesttuh untuk yg belum login ya atau bagaimana ? -->
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                            <li><a href="{{ route('berita.index') }}">Berita</a></li>
                             <li><a href="{{ route('category.index') }}">Category</a></li>
                             <li><a href="{{ route('pengguna.index') }}">Pengguna</a></li>
                             
