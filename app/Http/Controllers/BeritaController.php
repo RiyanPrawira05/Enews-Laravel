@@ -70,7 +70,7 @@ class BeritaController extends Controller
         if($request->header) { // Jikalau ada inputan header dia proses dibawah
           $data->header = UploadFile::file($request->header, 'foto/'); // dia nge return url nya
         }
-        return redirect()->route('berita.index')->with('success', 'Data Berhasil di Tambah');;
+        return redirect()->route('berita.index')->with('success', 'Data Berhasil di Tambah');
     }
 
     /**
