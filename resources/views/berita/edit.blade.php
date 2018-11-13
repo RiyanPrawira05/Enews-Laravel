@@ -8,14 +8,14 @@
                 <div class="panel-heading">Add Berita</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('berita.store') }}" enctype="multipart/form-data">
+                    <form class="form-horizontal" method="POST" action="{{ route('berita.update', $berita->id) }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('judul') ? ' has-error' : '' }}"> <!-- apakah nama $errors->has('judul') ini harus sesuai dengan nama di database? dan $errors dari mana -->
                             <label for="judul" class="col-md-4 control-label">Judul</label>
 
                             <div class="col-md-6">
-                                <input id="kategori" type="text" class="form-control" name="judul" value="{{ old('judul') }}" autofocus="autofocus"> <!-- old('') ini apa? -->
+                                <input id="judul" type="text" class="form-control" name="judul" value="{{ $berita->judul }}"> <!-- old('') ini apa? -->
 
                                 @if ($errors->has('judul')) <!-- ini juga dan has itu apa -->
                                     <span class="help-block">
@@ -29,7 +29,7 @@
                             <label for="header" class="col-md-4 control-label">Header</label>
 
                             <div class="col-md-6">
-                                <input type="file" id="header" class="form-control" name="header" value="{{ old('header') }}">
+                                <input type="file" id="header" name="header" required>{{ $berita->header }}
 
                                 @if ($errors->has('header'))
                                     <span class="help-block">
@@ -43,7 +43,7 @@
                             <label for="isi" class="col-md-4 control-label">Isi</label>
 
                             <div class="col-md-6">
-                                <textarea id="isi" class="form-control" name="isi" value="{{ old('isi') }}"></textarea>
+                                <textarea id="isi" class="form-control" name="isi">{{ $berita->isi }}</textarea>
 
                                 @if ($errors->has('isi'))
                                     <span class="help-block">
@@ -59,7 +59,10 @@
                             <div class="col-md-6">
                                 <select id="user" class="form-control" name="user_id" value="{{ old('user') }}">
                                     @foreach($user as $users)
-                                        <option value="{{ $users->id }}">{{ $users->name }}</option>
+                                            <option value="{{ $users->id }}" {{ $users->id == $berita->user_id ? 'selected' : ''}}>{{ $users->name }}</option>
+
+                                            <!-- Mengambil tabel user(id) dan tabel berita(user_id), apabila sesuai lakukan selected. sesuai pada saat penambahan tabel berita yang dipilih -->
+
                                     @endforeach
                                 </select>
 
@@ -75,9 +78,18 @@
                             <label for="kategori" class="col-md-4 control-label">Kategori ID</label>
 
                             <div class="col-md-6">
-                                <select id="kategori" type="text" class="form-control" name="kategori_id" value="{{ old('kategori') }}">
+                                <select id="kategori" type="text" class="form-control" name="kategori_id">
                                     @foreach ($category as $kategori)
-                                        <option value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>
+
+                                        <!-- Logic ini juga bisa untuk selected -->
+                                        <!-- @if ($kategori->id == $berita->kategori_id)
+                                            <option value="{{ $kategori->id }}" selected="selected">{{ $kategori->kategori }}</option>
+                                        @else
+                                            <option value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>
+                                        @endif --> 
+                                        <!-- Logic ini juga bisa untuk selected -->
+
+                                        <option value="{{ $kategori->id }}" {{$kategori->id == $berita->kategori_id ? 'selected' : '' }}>{{ $kategori->kategori }}</option>
                                     @endforeach
                                 </select>
 
@@ -93,8 +105,11 @@
                             <label for="status" class="col-md-4 control-label">Status</label>
 
                             <div class="col-md-4">
-                                <input type="radio" id="status" name="status" id="status" value="0"> <b>Draft<b></br>
-                                <input type="radio" name="status" id="status" value="1"> <b>Publish<b>
+
+                                <input type="radio" id="status" name="status" id="status" value="0" {{$berita->status == 0 ? 'checked' : ''}}> <b>Draft<b></br>
+                                <input type="radio" name="status" id="status" value="1" {{$berita->status == 1 ? 'checked' : ''}}> <b>Publish<b>
+
+                                <!-- Mengambil tabel berita(status) dan menyamakan, apabila status nya 0 atau 1 lakukan checked sesuai yang dipilih pada saat penambahan tabel berita -->
 
                                 @if ($errors->has('status'))
                                     <span class="help-block">

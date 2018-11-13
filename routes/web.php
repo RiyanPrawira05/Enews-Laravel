@@ -44,5 +44,8 @@ Route::get('/categori/delete/{id}', 'CategoryController@destroy')->name('categor
 Route::get('/berita', 'BeritaController@index')->name('berita.index');
 Route::get('/berita/create', 'BeritaController@create')->name('berita.create');
 Route::post('/berita/create', 'BeritaController@store')->name('berita.store');
+Route::get('/berita/edit/{id}', 'BeritaController@edit')->name('berita.edit');
+Route::post('/berita/edit/{id}', 'BeritaController@update')->name('berita.update');
+Route::get('/berita/delete/{id}', 'BeritaController@destroy')->name('berita.destroy');
 
 

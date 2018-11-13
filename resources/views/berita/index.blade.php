@@ -24,23 +24,21 @@
                                 <th><span class="">Actions</span></th>
                             </thead>
                             <tbody>
+                                @php ($no = 1)
                                 @foreach ($berita as $news)
                                     <tr>
-                                        <td></td>
+                                        <td>{{ $no++ }}</td>
                                         <td>{{ $news->created_at }}</td>
                                         <td>{{ $news->judul }}</td>
-                                        <td>{{ $news->header }}</td>
+                                        <td>{{ $news->header }}></td>
                                         <td>{{ $news->isi }}</td>
-
-                                        <td>{{ $news->user->name }}</td> <!-- cara nampilin nama usernya gimana ya pi? saya sudah manggil model user di controller tpi ttep ga bsa -->
-
-                                        <td>{{ $news->category->kategori }}</td> <!-- ini juga sama -->
-
+                                        <td>{{ $news->user->name }}</td> 
+                                        <td>{{ $news->category->kategori }}</td>
                                         <td>{{ $news->status == 1 ? 'Publish' : 'Draft' }}</td>
                                         <td>{{ $news->updated_at }}</td>
                                         <td>
-                                            <a href="" class="btn btn-sm btn-warning"><span class="fa fa-edit"></span></a>
-                                            <a href="" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
+                                            <a href="{{ route('berita.edit', $news->id) }}" class="btn btn-sm btn-warning"><span class="fa fa-edit"></span></a>
+                                            <a href="{{ route('berita.destroy', $news->id) }}" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
                                         </td>
                                     </tr>
                                 @endforeach

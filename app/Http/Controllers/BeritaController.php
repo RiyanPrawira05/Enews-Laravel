@@ -70,7 +70,7 @@ class BeritaController extends Controller
         if($request->header) { // Jikalau ada inputan header dia proses dibawah
           $data->header = UploadFile::file($request->header, 'foto/'); // dia nge return url nya
         }
-        return redirect()->route('berita.index');
+        return redirect()->route('berita.index')->with('success', 'Data Berhasil di Tambah');;
     }
 
     /**
@@ -94,7 +94,11 @@ class BeritaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $berita = Berita::find($id);
+        $category = Category::all();
+        $user = User::all();
+
+        return view('berita.edit', compact('berita','category', 'user'));
     }
 
     /**
@@ -106,7 +110,15 @@ class BeritaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Berita::find($id);
+        $data->judul = $request->judul;
+        $data->header = $request->header;
+        $data->isi = $request->isi;
+        $data->user_id = $request->user_id;
+        $data->kategori_id = $request->kategori_id;
+        $data->status = $request->status;
+        $data->save();
+        return redirect()->route('berita.index')->with('success', 'Data Berhasil di Update');
     }
 
     /**
@@ -117,6 +129,7 @@ class BeritaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Berita::find($id)->delete();
+        return redirect()->route('berita.index')->with('success', 'Data Berhasil di hapus');
     }
 }

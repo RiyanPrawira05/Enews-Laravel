@@ -20,9 +20,10 @@
                                 <th><span class="">Actions</span></th>
                             </thead>
                             <tbody>
+                                @php ($no = 1)
                                 @foreach ($data as $user)
                                 <tr>
-                                    <td></td>
+                                    <td>{{ $no++ }}</td>
                                     <td>{{ $user->created_at }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>

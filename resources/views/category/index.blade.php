@@ -20,9 +20,10 @@
                                 <th><span class="">Actions</span></th>
                             </thead>
                             <tbody>
+                                @php ($no = 1)
                                 @foreach ($category as $kategori)
                                     <tr>
-                                        <td></td>
+                                        <td>{{ $no++ }}</td>
                                         <td>{{ $kategori->created_at }}</td>
                                         <td>{{ $kategori->kategori }}</td>
                                         <td>{{ $kategori->keterangan }}</td>
