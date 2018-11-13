@@ -60,16 +60,15 @@ class BeritaController extends Controller
 
         $data = new Berita;
         $data->judul = $request->judul;
-        $data->header = $request->header;
+        if($request->header) { // Jikalau ada inputan header dia proses dibawah
+          $data->header = UploadFile::file($request->header, 'foto/'); // dia nge return url nya
+        }
         $data->isi = $request->isi;
         $data->user_id = $request->user_id;
         $data->kategori_id = $request->kategori_id;
         $data->status = $request->status;
         $data->save();
 
-        if($request->header) { // Jikalau ada inputan header dia proses dibawah
-          $data->header = UploadFile::file($request->header, 'foto/'); // dia nge return url nya
-        }
         return redirect()->route('berita.index')->with('success', 'Data Berhasil di Tambah');
     }
 
@@ -112,7 +111,9 @@ class BeritaController extends Controller
     {
         $data = Berita::find($id);
         $data->judul = $request->judul;
-        $data->header = $request->header;
+        if($request->header) { // Jikalau ada inputan header dia proses dibawah
+          $data->header = UploadFile::file($request->header, 'foto/'); // dia nge return url nya
+        }
         $data->isi = $request->isi;
         $data->user_id = $request->user_id;
         $data->kategori_id = $request->kategori_id;
