@@ -30,7 +30,7 @@
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $news->created_at }}</td>
                                         <td>{{ $news->judul }}</td>
-                                        <td>{{ asset($news->header) }}></td>
+                                        <td><img src="{{ asset($news->header) }}" class="img-responsive"></td>
                                         <td>{{ $news->isi }}</td>
                                         <td>{{ $news->user->name }}</td> 
                                         <td>{{ $news->category->kategori }}</td>
