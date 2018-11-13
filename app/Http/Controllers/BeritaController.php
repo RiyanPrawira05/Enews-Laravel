@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Berita;
 use App\Category;
 use App\User;
+use UploadFile; // Dari folder Helper dan isinya UploadFile
 
 // use App\User;
 
@@ -48,8 +49,8 @@ class BeritaController extends Controller
     {
         $this->validate($request, [
 
-            'judul' => 'max:30',
-            'header' => 'required',
+            'judul' => 'required|max:30',
+            'header' => 'required|mimes:jpg,png,jpeg',
             'isi' => 'required|max:100',
             'user_id' => 'required|max:50',
             'kategori_id' => 'required|max:50',
@@ -67,7 +68,7 @@ class BeritaController extends Controller
         $data->save();
 
         if($request->header) { // Jikalau ada inputan header dia proses dibawah
-          $user->header = UploadFile::file($request->avatar, 'images/'); // dia nge return url nya
+          $data->header = UploadFile::file($request->header, 'foto/'); // dia nge return url nya
         }
         return redirect()->route('berita.index');
     }

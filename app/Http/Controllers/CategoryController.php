@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use UploadFile; // ini ambil dari mana pi?
 use App\Category; //ambil dari model categori
 
 class CategoryController extends Controller

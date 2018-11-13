@@ -36,7 +36,7 @@
 
                                         <td>{{ $news->category->kategori }}</td> <!-- ini juga sama -->
 
-                                        <td>{{ $news->status }}</td>
+                                        <td>{{ $news->status == 1 ? 'Publish' : 'Draft' }}</td>
                                         <td>{{ $news->updated_at }}</td>
                                         <td>
                                             <a href="" class="btn btn-sm btn-warning"><span class="fa fa-edit"></span></a>
