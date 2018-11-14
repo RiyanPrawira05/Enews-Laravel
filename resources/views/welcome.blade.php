@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ app()->getLocale() }}"> <!-- ini untuk apa pi -->
+<html lang="{{ app()->getLocale() }}"> <!-- {{ app()->getLocale() }} ?? -->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -66,9 +66,11 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login')) <!-- ini ambil dri mana ya pi kan gada route-->
+            @if (Route::has('login')) <!-- ini ((Route::has('login'))) ambil dri mana ya pi kan gada route -->
+
                 <div class="top-right links">
-                    @auth <!-- ini untuk apa pi-->
+                    @auth <!-- (@auth) ?? bedanya dengan else dan prosesnya atau ngambil dri mana fungsi nya -->
+                    
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>

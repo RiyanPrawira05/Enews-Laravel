@@ -11,15 +11,18 @@
                     <form class="form-horizontal" method="POST" action="{{ route('berita.store') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('judul') ? ' has-error' : '' }}"> <!-- apakah nama $errors->has('judul') ini harus sesuai dengan nama di database? dan $errors dari mana -->
+                        <div class="form-group{{ $errors->has('judul') ? ' has-error' : '' }}"> <!-- apakah nama $errors->has('judul') ini harus sesuai dengan nama di database or input name html? dan $errors dari mana dan seperti apa -->
+                            
                             <label for="judul" class="col-md-4 control-label">Judul</label>
 
                             <div class="col-md-6">
-                                <input id="kategori" type="text" class="form-control" name="judul" value="{{ old('judul') }}" autofocus="autofocus"> <!-- old('') ini apa? -->
+                                <input id="kategori" type="text" class="form-control" name="judul" value="{{ old('judul') }}" autofocus="autofocus"> <!-- ({{ old('judul') }}) ? -->
 
-                                @if ($errors->has('judul')) <!-- ini juga dan has itu apa -->
+                                @if ($errors->has('judul')) <!-- ($errors->has('judul')) ? -->
+
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('judul') }}</strong> <!-- first ini maksutnya apa pi-->
+                                        <strong>{{ $errors->first('judul') }}</strong> <!-- ({{ $errors->first('judul') }}) ?-->
+
                                     </span>
                                 @endif
                             </div>

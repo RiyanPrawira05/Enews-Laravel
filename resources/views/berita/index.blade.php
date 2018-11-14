@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12 col-md-offset-0">
             <div class="panel panel-default">
-                <div class="panel-heading">Berita<a href="{{ route('berita.create') }}" class="btn btn-success btn-sm pull-right"><span class="fa fa-plus-circle"></span></a></div>
+                <div class="panel-heading">Berita</div>
 
                 <div class="panel-body">
                     @include('template.alert')
@@ -14,34 +14,55 @@
                             <thead>
                                 <th>#</th>
                                 <th>Created At</th>
-                                <th>Judul</th>
+                                <th>User</th>
                                 <th>Header</th>
+                                <th>Judul</th>
                                 <th>Isi</th>
-                                <th>User ID</th>
-                                <th>Kategori ID</th>
                                 <th>Status</th>
+                                <th>Kategori</th>
                                 <th>Update At</th>
-                                <th><span class="">Actions</span></th>
+                                <th><span class="fa fa-cogs"></span></th>
+                                <th><a href="{{ route('berita.create') }}" class="btn btn-success btn-sm pull-right"><span class="fa fa-plus-circle"></span></a></th>
                             </thead>
                             <tbody>
                                 @php ($no = 1)
+                                @if (count($berita) != 0)
                                 @foreach ($berita as $news)
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $news->created_at }}</td>
+                                        <td>{{ $news->user->name }}</td>
+                                        <td>
+                                            @if (!empty($news->header))
+                                                <img src="{{ asset($news->header) }}" class="img-responsive">
+                                            @else
+                                                <span class="label label-danger">NULL</span>
+                                            @endif
+                                        </td>
                                         <td>{{ $news->judul }}</td>
-                                        <td><img src="{{ asset($news->header) }}" class="img-responsive"></td>
                                         <td>{{ $news->isi }}</td>
-                                        <td>{{ $news->user->name }}</td> 
+
+                                        <!-- <td>{{ $news->status == 1 ? 'Publish' : 'Draft' }}</td> -->
+
+                                        <td>
+                                            @if ($news->status == 1)
+                                                <span class="label label-success">PUBLISH</span>
+                                            @else
+                                                <span class="label label-primary">DRAFT</span>
+                                            @endif
+                                        </td>
                                         <td>{{ $news->category->kategori }}</td>
-                                        <td>{{ $news->status == 1 ? 'Publish' : 'Draft' }}</td>
                                         <td>{{ $news->updated_at }}</td>
                                         <td>
-                                            <a href="{{ route('berita.edit', $news->id) }}" class="btn btn-sm btn-warning"><span class="fa fa-edit"></span></a>
+                                            <a href="{{ route('berita.edit', $news->id) }}" class="btn btn-sm btn-warning"><span class="fa fa-pencil"></span></a>
                                             <a href="{{ route('berita.destroy', $news->id) }}" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
                                         </td>
+                                        <td></td>
                                     </tr>
                                 @endforeach
+                                @else 
+                                    <td colspan="15" align="center"><span class="label label-danger">Data Empty !!</span></td>
+                                @endif
                             </tbody>
                         </table>
                 </div>

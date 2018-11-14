@@ -1,22 +1,25 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}"> <!-- ({{ app()->getLocale() }}) ?? -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- {{ csrf_token() }} ?? -->
 
-    <title>{{ config('app.name', 'Laravel') }}</title> <!-- ini tuh apasih pi-->
+    <title>{{ config('app.name', 'Laravel') }}</title> <!-- ({{ config('app.name', 'Laravel') }}) ?? -->
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> <!-- ini di asset saya liat gada css adanya js -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('font-awesome/css/font-awesome.min.css') }}">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet"> <!-- ini di asset saya liat gada css adanya js (maksutnya ini dia manggil app.css di folder asset apa dia bikin fungsi) kasusnya samaseperti pemanggilan gambar di index berita -->
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('font-awesome/css/font-awesome.min.css') }}"> <!-- ini font-awesome ada di folder public, tapi pemanggilan nya ko seperti ini? (masih kurang ngerti) -->
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
 
@@ -29,9 +32,11 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}"> <!-- ini juga dari tag <a> sampai penutup </a> untuk apa -->
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
-                    </a>
+                    </a> <!-- ini ({{ config('app.name', 'Laravel') }}) dan ini ({{ url('/') }}) masih gatau?? 
+                    dan bedanya url, dan route? apa sama saja? -->
+
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -43,8 +48,10 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
+
+                        <!-- ini guest untuk yg belum login ya atau bagaimana? dan bedanya dengan else dibawah (lupa) -->
                         
-                        @guest <!-- ini lupa pi guesttuh untuk yg belum login ya atau bagaimana ? -->
+                        @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
@@ -54,7 +61,7 @@
                             
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->name }} <span class="caret"></span> <!-- ?? ({{ Auth::user()->name }}) -->
                                 </a>
 
                                 <ul class="dropdown-menu">
@@ -63,11 +70,11 @@
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
-                                        </a>
+                                        </a> <!-- ini route logout gada ko bsa begini-->
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
+                                            {{ csrf_field() }} 
+                                        </form> <!-- setiap ada form harus ada ini ({{ csrf_field() }}) ya? untuk apa ini? -->
                                     </li>
                                 </ul>
                             </li>

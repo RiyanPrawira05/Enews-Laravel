@@ -9,8 +9,6 @@ use App\Category;
 use App\User;
 use UploadFile; // Dari folder Helper dan isinya UploadFile
 
-// use App\User;
-
 class BeritaController extends Controller
 {
     /**
@@ -50,7 +48,7 @@ class BeritaController extends Controller
         $this->validate($request, [
 
             'judul' => 'required|max:30',
-            'header' => 'required|mimes:jpg,png,jpeg',
+            'header' => 'mimes:jpg,png,jpeg',
             'isi' => 'required|max:100',
             'user_id' => 'required|max:50',
             'kategori_id' => 'required|max:50',

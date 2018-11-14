@@ -8,9 +8,10 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    @if (session('status')) <!-- apakah proses ini sama seperti alert.blade.php pi? --> 
+                    @if (session('status')) <!-- apakah proses ini sama seperti alert.blade.php pi? dan proses contohnya seperti apa --> 
+
                         <div class="alert alert-success">
-                            {{ session('status') }} <!--pemanggilan apaini pi-->
+                            {{ session('status') }} <!-- pemanggilan seperti apa ini?? -->
                         </div>
                     @endif
 

@@ -11,15 +11,15 @@
                     <form class="form-horizontal" method="POST" action="{{ route('berita.update', $berita->id) }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('judul') ? ' has-error' : '' }}"> <!-- apakah nama $errors->has('judul') ini harus sesuai dengan nama di database? dan $errors dari mana -->
+                        <div class="form-group{{ $errors->has('judul') ? ' has-error' : '' }}"> 
                             <label for="judul" class="col-md-4 control-label">Judul</label>
 
                             <div class="col-md-6">
-                                <input id="judul" type="text" class="form-control" name="judul" value="{{ $berita->judul }}"> <!-- old('') ini apa? -->
+                                <input id="judul" type="text" class="form-control" name="judul" value="{{ $berita->judul }}">
 
-                                @if ($errors->has('judul')) <!-- ini juga dan has itu apa -->
+                                @if ($errors->has('judul')) 
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('judul') }}</strong> <!-- first ini maksutnya apa pi-->
+                                        <strong>{{ $errors->first('judul') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -29,7 +29,21 @@
                             <label for="header" class="col-md-4 control-label">Header</label>
 
                             <div class="col-md-6">
-                                <input type="file" id="header" name="header" required>{{ $berita->header }}
+                                <img src="{{ asset($berita->header) }}" class="img-responsive" height="90" width="90" alt="{{ $berita->header }}">
+
+                                @if ($errors->has('header'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('header') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('header') ? ' has-error' : '' }}">
+                            <label for="header" class="col-md-4 control-label"></label>
+
+                            <div class="col-md-6">
+                                <input type="file" id="header" name="header">
 
                                 @if ($errors->has('header'))
                                     <span class="help-block">

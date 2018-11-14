@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Helper;
 
-use File; //ini dari mana pi
-use Storage; //ini juga
+use File; // File ??
+use Storage; // Storage ??
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class UploadFile extends Controller
 {
-    public static function storage($file, $folder = 'berkas/', $fpath = 'public/') //ini sampai bawah masih blom mengerti
+    public static function storage($file, $folder = 'berkas/', $fpath = 'public/') // ini sampai bawah masih blom mengerti 
     {
         if ($file) {
             $name = md5(\Carbon\Carbon::now()).'.'.$file->getClientOriginalExtension();
