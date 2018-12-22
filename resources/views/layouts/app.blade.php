@@ -55,9 +55,9 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <li><a href="{{ route('berita.index') }}">Berita</a></li>
-                            <li><a href="{{ route('category.index') }}">Category</a></li>
-                            <li><a href="{{ route('pengguna.index') }}">Pengguna</a></li>
+                            <li class="{{ route::is('berita.index') ? 'active' : '' }}"><a href="{{ route('berita.index') }}">Berita</a></li>
+                            <li class="{{ route::is('category.index') ? 'active' : '' }}"><a href="{{ route('category.index') }}">Category</a></li>
+                            <li class="{{ route::is('pengguna.index') ? 'active' : '' }}"><a href="{{ route('pengguna.index') }}">Pengguna</a></li>
                             
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">

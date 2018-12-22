@@ -8,6 +8,7 @@
                 <div class="panel-heading">Add Berita</div>
 
                 <div class="panel-body">
+                    @include('template.alert')
                     <form class="form-horizontal" method="POST" action="{{ route('berita.store') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 

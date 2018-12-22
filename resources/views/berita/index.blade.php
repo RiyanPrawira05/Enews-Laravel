@@ -9,6 +9,18 @@
 
                 <div class="panel-body">
                     @include('template.alert')
+
+                    <div class="text-center">
+                        <form class="form-horizontal" method="get">
+                            <div class="form-group">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <span class="fa fa-search"></span>
+                                    <input class="form-control" type="text" name="search" id="search" value=" {{ request()->input('search') }}" placeholder="Type here" autofocus>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
@@ -25,11 +37,14 @@
                                 <th><a href="{{ route('berita.create') }}" class="btn btn-success btn-sm pull-right"><span class="fa fa-plus-circle"></span></a></th>
                             </thead>
                             <tbody>
-                                @php ($no = 1)
+
+                                <p> Data Berita : {{ $berita->count() }} </p>
+
                                 @if (count($berita) != 0)
+
                                 @foreach ($berita as $news)
                                     <tr>
-                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $news->created_at }}</td>
                                         <td>{{ $news->user->name }}</td>
                                         <td>

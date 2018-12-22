@@ -31,4 +31,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function relasi()
+    {
+        return $this->hasMany('App\Berita', 'user_id');
+    }
 }

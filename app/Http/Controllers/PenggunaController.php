@@ -15,12 +15,7 @@ class PenggunaController extends Controller
     public function index()
     {
         $data = User::orderBy('created_at', 'DESC')->get(); // Untuk query memanggil semua User
-        // dd($data); // Untuk dump data user... hapus aja ini
-
-        // foreach ($data as $users) {
-        //     $users->name;
-        //     $users->email;
-        // }
+        
         return view('pengguna.index', compact('data'));
     }
 
@@ -76,7 +71,7 @@ class PenggunaController extends Controller
     public function edit($id)
     {
         $data = User::find($id); // Mencari user sesuai dengan id = $id
-        // dd($data);
+        dd($data->relasi);
         return view('pengguna.edit', compact('data'));
     }
 

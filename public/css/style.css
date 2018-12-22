@@ -17,6 +17,7 @@ body {
 .navbar{
 	position: relative!important;
 	z-index: 1!important;
+	font-family: Mali, sans-serif!important;
 }
 .navbar-brand {
 	font-family: Viga, sans-serif!important;
@@ -49,7 +50,7 @@ body {
     line-height: 1.6;
     vertical-align: top;
     border-top: 1px solid #b5aeae;
-    font-family: Mali, sans-serif;
+    font-family: Mali, sans-serif!important;
 }
 
 /* DESKTOP VERSION */

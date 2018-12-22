@@ -16,10 +16,18 @@ class BeritaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // $berita = Berita::with('category', 'user')->get();
-        $berita = Berita::all();
+
+    $berita = Berita::query();
+
+        if ($request->filled('search')) {
+            $berita = $berita->where('judul', 'like', '%' .$request->search. '%')->orwhere('isi', 'like', '%' .$request->search. '%');
+        }
+
+        $berita = $berita->orderBy('created_at', 'DESC')->get();
+
         $category = Category::all();
         $user = User::all();
         return view('berita.index', compact('berita', 'category', 'user'));
